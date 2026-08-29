@@ -1,3 +1,35 @@
+function testDatabase() {
+
+  document.getElementById('hasil').innerHTML =
+    '⏳ Menghubungkan ke database...';
+
+  google.script.run
+    .withSuccessHandler(function(result) {
+
+      const data = JSON.parse(result);
+
+      if (data.status === 'OK') {
+
+        document.getElementById('hasil').innerHTML =
+          '✅ ' + data.message +
+          '<br>📊 ' + data.nama;
+
+      } else {
+
+        document.getElementById('hasil').innerHTML =
+          '❌ ' + data.message;
+
+      }
+
+    })
+    .withFailureHandler(function(error) {
+
+      document.getElementById('hasil').innerHTML =
+        '❌ ERROR: ' + error.message;
+
+    })
+    .testDatabase();
+}
 <!doctype html>
 <html lang="id">
 <head>
