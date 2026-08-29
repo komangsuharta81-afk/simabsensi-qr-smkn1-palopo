@@ -1,3 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 500px;
+      background: white;
+      padding: 35px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .success {
+      color: #16a34a;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>📱 SIABSEN QR</h1>
+
+    <p>Sistem Informasi Absensi Siswa</p>
+
+    <p class="success">
+      ✓ Aplikasi berhasil dijalankan
+    </p>
+
+    <p>
+      Google Apps Script dan halaman HTML sudah terhubung.
+    </p>
+
+    <button onclick="tesDatabase()">
+      TES KONEKSI DATABASE
+    </button>
+
+    <p id="hasil"></p>
+  </div>
+
+  <script>
+    function tesDatabase() {
+      document.getElementById('hasil').innerHTML =
+        '⏳ Menghubungkan ke database...';
+
+      google.script.run
+        .withSuccessHandler(function(result) {
+          document.getElementById('hasil').innerHTML =
+            '✅ ' + result;
+        })
+        .withFailureHandler(function(error) {
+          document.getElementById('hasil').innerHTML =
+            '❌ Error: ' + error.message;
+        })
+        .testDatabase();
+    }
+  </script>
+</body>
+</html>
+
 <!doctype html>
 <html lang="id">
 <head>
